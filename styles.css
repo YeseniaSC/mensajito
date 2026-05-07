@@ -1,0 +1,28 @@
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  background: linear-gradient(
+    to bottom,
+    #020111,
+    #191970,
+    #0a0f2c
+  );
+}
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{
+    opacity:0.2;
+  }
+  to{
+    opacity:1;
+  }
+}
