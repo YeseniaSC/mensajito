@@ -17,49 +17,27 @@
 body{
   overflow:hidden;
   height:100vh;
-  background:
-  radial-gradient(circle at bottom,
-  #1b2735 0%,
-  #090a0f 100%);
+  background: radial-gradient(circle at bottom,#1b2735 0%,#090a0f 100%);
   font-family:sans-serif;
 }
-
-/* CANVAS */
 
 canvas{
   position:absolute;
   inset:0;
 }
 
-/* LUNA */
-
 .moon{
   position:absolute;
-
   top:70px;
   right:100px;
-
   width:150px;
   height:150px;
-
   border-radius:50%;
-
-  background:
-  radial-gradient(circle at 30% 30%,
-  #ffffff 0%,
-  #ececec 35%,
-  #cfcfcf 65%,
-  #9f9f9f 100%);
-
+  background: radial-gradient(circle at 30% 30%,#ffffff 0%,#ececec 35%,#cfcfcf 65%,#9f9f9f 100%);
   box-shadow:
   0 0 30px rgba(255,255,255,.8),
-  0 0 80px rgba(255,255,255,.3),
-  inset -20px -20px 40px rgba(0,0,0,.25),
-  inset 10px 10px 25px rgba(255,255,255,.2);
-
-  overflow:hidden;
+  0 0 80px rgba(255,255,255,.3);
 }
-
 /* CRATERES */
 
 .moon::before,
@@ -108,51 +86,31 @@ canvas{
   inset -3px -3px 5px rgba(0,0,0,.25),
   inset 2px 2px 3px rgba(255,255,255,.15);
 }
-
-/* TEXTO */
-
 .text{
   position:absolute;
-
   top:40px;
   width:100%;
-
   text-align:center;
-
   color:white;
-
   letter-spacing:2px;
-
   opacity:.8;
 }
 
-/* ESTRELLA */
-
 .star{
-
   position:absolute;
-
   left:50%;
   top:45%;
-
   width:18px;
   height:18px;
-
   background:white;
-
   border-radius:50%;
-
   transform:translate(-50%, -50%);
-
   cursor:pointer;
-
   box-shadow:
   0 0 10px white,
   0 0 20px white,
   0 0 40px #8be9fd,
-  0 0 80px #8be9fd,
-  0 0 120px #8be9fd;
-
+  0 0 80px #8be9fd;
   animation:
   pulse 1.5s infinite alternate,
   float 4s ease-in-out infinite;
@@ -163,64 +121,41 @@ canvas{
   content:"";
   position:absolute;
   background:white;
-  border-radius:10px;
 }
 
 .star::before{
-
   width:3px;
   height:50px;
-
   left:7px;
   top:-16px;
-
-  box-shadow:
-  0 0 10px white,
-  0 0 20px #8be9fd;
 }
 
 .star::after{
-
   width:50px;
   height:3px;
-
   left:-16px;
   top:7px;
-
-  box-shadow:
-  0 0 10px white,
-  0 0 20px #8be9fd;
 }
-/* MENSAJE */
 
 .message{
-
   position:absolute;
-
   left:50%;
   top:65%;
-
   transform:translateX(-50%);
-
   color:white;
-
-  font-size:2rem;
-
+  font-size:1.5rem;
+  width:80%;
+  text-align:center;
   opacity:0;
-
   transition:1s;
-
   text-shadow:
   0 0 10px white,
-  0 0 20px #ff79c6,
-  0 0 40px #8be9fd;
+  0 0 20px #ff79c6;
 }
 
 .message.show{
   opacity:1;
 }
-
-/* PARTICULAS */
 
 .particle{
   position:absolute;
@@ -228,40 +163,15 @@ canvas{
   pointer-events:none;
 }
 
-/* ANIMACIONES */
 @keyframes float{
-
-  0%{
-    transform:
-    translate(-50%, -50%)
-    translateY(0px);
-  }
-
-  50%{
-    transform:
-    translate(-50%, -50%)
-    translateY(-10px);
-  }
-
-  100%{
-    transform:
-    translate(-50%, -50%)
-    translateY(0px);
-  }
+  0%{transform:translate(-50%,-50%) translateY(0px);}
+  50%{transform:translate(-50%,-50%) translateY(-10px);}
+  100%{transform:translate(-50%,-50%) translateY(0px);}
 }
+
 @keyframes pulse{
-
-  from{
-    transform:
-    translate(-50%, -50%)
-    scale(1);
-  }
-
-  to{
-    transform:
-    translate(-50%, -50%)
-    scale(1.5);
-  }
+  from{transform:translate(-50%,-50%) scale(1);}
+  to{transform:translate(-50%,-50%) scale(1.5);}
 }
 
 </style>
@@ -274,60 +184,39 @@ canvas{
 <div class="moon"></div>
 
 <div class="text">
-  Haz click en la estrella ✨
+Haz click en la estrella ✨
 </div>
 
 <div class="star"></div>
 
 <div class="message">
-  Hola mi chiquita preciosa, porque jamás serás espectadora</div></div>
-  Me encanta hablar contigo, y la verdad agradezco mucho al universo por habernos hecho coincidir.</div>
-  No sé cómo termine esto, pero sí sé que me encanta haberte encontrado. </div>
-  Pinche vieja chiquita y hermosa, me gustais.</div></div>
-  Besito
+Hola mi chiquita preciosa 💖<br><br>
+Me encanta hablar contigo y agradezco mucho al universo por habernos hecho coincidir.<br><br>
+No sé cómo termine esto, pero sí sé que me encantó haberte encontrado.<br><br>
+Estás hermosísima ✨<br><br>
+Besito
 </div>
 
+<audio id="bg-music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-const music =
-document.getElementById("bg-music");
 
-star.addEventListener("click",()=>{
-
-  music.play();
-
-  explode();
-
-  message.classList.add("show");
-
-  star.style.display="none";
-});
-/* CANVAS */
-
-const canvas =
-document.getElementById("canvas");
-
-const ctx =
-canvas.getContext("2d");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-/* ESTRELLAS DE FONDO */
-
 const stars = [];
 
 for(let i=0;i<200;i++){
-
   stars.push({
-
     x:Math.random()*canvas.width,
-
     y:Math.random()*canvas.height,
-
     r:Math.random()*2,
-
     o:Math.random(),
-
     s:Math.random()*0.02
   });
 }
@@ -348,8 +237,7 @@ function animate(){
       Math.PI*2
     );
 
-    ctx.fillStyle =
-    `rgba(255,255,255,${star.o})`;
+    ctx.fillStyle = `rgba(255,255,255,${star.o})`;
 
     ctx.fill();
 
@@ -358,6 +246,7 @@ function animate(){
     if(star.o >= 1 || star.o <= 0.2){
       star.s *= -1;
     }
+
   });
 
   requestAnimationFrame(animate);
@@ -365,44 +254,36 @@ function animate(){
 
 animate();
 
-/* CLICK ESTRELLA */
-
-const star =
-document.querySelector(".star");
-
-const message =
-document.querySelector(".message");
+const star = document.querySelector(".star");
+const message = document.querySelector(".message");
+const music = document.getElementById("bg-music");
 
 star.addEventListener("click",()=>{
+
+  music.play();
 
   explode();
 
   message.classList.add("show");
 
   star.style.display="none";
-});
 
-/* EXPLOSION */
+});
 
 function explode(){
 
   for(let i=0;i<120;i++){
 
-    const particle =
-    document.createElement("div");
+    const particle = document.createElement("div");
 
     particle.classList.add("particle");
 
     document.body.appendChild(particle);
 
-    const size =
-    Math.random()*6+2;
+    const size = Math.random()*6+2;
 
-    particle.style.width =
-    size+"px";
-
-    particle.style.height =
-    size+"px";
+    particle.style.width = size+"px";
+    particle.style.height = size+"px";
 
     const colors = [
       "#ff79c6",
@@ -412,14 +293,9 @@ function explode(){
       "#ffffff"
     ];
 
-    const color =
-    colors[Math.floor(Math.random()*colors.length)];
+    const color = colors[Math.floor(Math.random()*colors.length)];
 
-    particle.style.background =
-    color;
-
-    particle.style.boxShadow =
-    `0 0 20px ${color}`;
+    particle.style.background = color;
 
     const x = innerWidth/2;
     const y = innerHeight*0.45;
@@ -427,36 +303,22 @@ function explode(){
     particle.style.left = x+"px";
     particle.style.top = y+"px";
 
-    const angle =
-    Math.random()*Math.PI*2;
+    const angle = Math.random()*Math.PI*2;
+    const distance = Math.random()*300+50;
 
-    const distance =
-    Math.random()*300+50;
-
-    const dx =
-    Math.cos(angle)*distance;
-
-    const dy =
-    Math.sin(angle)*distance;
+    const dx = Math.cos(angle)*distance;
+    const dy = Math.sin(angle)*distance;
 
     particle.animate([
-
       {
-        transform:
-        "translate(0,0) scale(1)",
-
+        transform:"translate(0,0) scale(1)",
         opacity:1
       },
-
       {
-        transform:
-        `translate(${dx}px,${dy}px) scale(0)`,
-
+        transform:`translate(${dx}px,${dy}px) scale(0)`,
         opacity:0
       }
-
     ],{
-
       duration:3000,
       easing:"ease-out"
     });
@@ -464,21 +326,18 @@ function explode(){
     setTimeout(()=>{
       particle.remove();
     },3000);
+
   }
 }
-
-/* RESPONSIVE */
 
 window.addEventListener("resize",()=>{
 
   canvas.width = innerWidth;
   canvas.height = innerHeight;
+
 });
 
 </script>
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
 
 </body>
 </html>
